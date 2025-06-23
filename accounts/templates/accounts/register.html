@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Kayıt Ol - Teknofyzen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+    :root {
+        --main-color: #343a40;
+        --main-color-hover: #23272b;
+        --accent-color: #17a2b8;
+        --accent-color-hover: #138496;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-container {
+        background-color: white;
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 420px;
+        margin: 80px auto;
+        animation: fadeIn 0.8s ease;
+    }
+
+    h2 {
+        text-align: center;
+        color: var(--main-color);
+        margin-bottom: 25px;
+        font-size: 26px;
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background-color: var(--accent-color);
+        border: none;
+        color: white;
+        font-size: 17px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: var(--accent-color-hover);
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: var(--main-color);
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus {
+        border-color: var(--accent-color);
+        outline: none;
+    }
+
+    .errorlist {
+        color: red;
+        font-size: 13px;
+        margin: 5px 0 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="bg-dark text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+        <img src="{% static 'images/teknofyzen_logo.png' %}" alt="Teknofyzen Logo" width="150">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+            <a class="navbar-brand" href="{% url 'home' %}">Teknofyzen</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'for_sale' %}">Satıştakiler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">İletişim</a></li>
+
+                    {% if user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'view_cart' %}">Sepetim</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'orders' %}">Siparişlerim</a></li>
+                        <li class="nav-item"><a class="nav-link text-danger" href="{% url 'logout' %}">Çıkış Yap</a></li>
+                    {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Kayıt Ol</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Giriş Yap</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Form -->
+<div class="form-container">
+    <h2>Kayıt Ol</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <ul class="errorlist">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit">Hesap Oluştur</button>
+    </form>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<div class="container py-5">
+  <h2 class="text-center mb-4 fw-bold" style="color: #17a2b8;">Ödeme Yap</h2>
+
+  <div class="card shadow-sm p-4">
+    <h4 class="mb-3 text-dark">{{ product.name }}</h4>
+    <p class="mb-1 text-dark">Fiyat: <strong>{{ product.price }} ₺</strong></p>
+
+    {% if order_confirmed %}
+      <div class="alert alert-success mt-4">
+        Siparişiniz başarıyla alındı!
+      </div>
+    {% else %}
+      <form method="POST" class="mt-4">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label class="form-label">Kart Üzerindeki İsim</label>
+          <input type="text" name="card_name" class="form-control" pattern="[A-Za-zÇçĞğİıÖöŞşÜü\s]{2,}" title="Sadece harf ve boşluk giriniz" required>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Kart Numarası</label>
+            <input type="text" name="card_number" class="form-control" pattern="\d{16}" maxlength="16" title="16 haneli kart numarası giriniz" required>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Son Kullanma (AA/YY)</label>
+            <input type="text" name="expiry" class="form-control" pattern="(0[1-9]|1[0-2])\/\d{2}" maxlength="5" title="Ay/Yıl formatında giriniz (örn: 06/25)" required>
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">CVV</label>
+            <input type="password" name="cvv" class="form-control" pattern="\d{3}" maxlength="3" title="3 haneli güvenlik kodu" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-lg w-100 mt-4" style="background-color: #17a2b8; color: white;">Ödemeyi Tamamla</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

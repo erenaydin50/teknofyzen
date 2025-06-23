@@ -1,0 +1,19 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<div class="container py-5 d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+  <div class="text-center">
+    <div class="mb-4">
+      
+    </div>
+    <h2 class="fw-bold" style="color: #17a2b8;">Siparişiniz Başarıyla Alındı!</h2>
+    <p class="fs-5 text-muted mt-3">Siparişiniz en kısa sürede hazırlanıp kargoya verilecektir.</p>
+    <a href="{% url 'product_list' %}" 
+   class="btn btn-sm px-4 py-2 mt-4" 
+   style="background-color: #17a2b8; color: white; border: none;">
+   Alışverişe Devam Et
+</a>
+  </div>
+</div>
+
+{% endblock %}

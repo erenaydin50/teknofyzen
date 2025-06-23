@@ -1,0 +1,57 @@
+{% extends 'store/base.html' %}
+{% block content %}
+
+<div class="container py-5">
+  <h2 class="text-center mb-4 fw-bold" style="color: #17a2b8;">Sepetim</h2>
+
+  {% if products %}
+    <div class="table-responsive shadow-sm rounded border">
+      <table class="table table-hover align-middle text-center bg-white">
+        <thead style="background-color: #17a2b8; color: white;">
+          <tr>
+            <th scope="col">Ürün</th>
+            <th scope="col">Adet</th>
+            <th scope="col">Birim Fiyat</th>
+            <th scope="col">Toplam</th>
+            <th scope="col">İşlem</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td class="fw-bold text-dark">{{ product.name }}</td>
+            <td class="fw-bold text-dark">{{ product.quantity }}</td>
+            <td class="fw-bold text-dark">{{ product.price }} ₺</td>
+            <td class="fw-bold text-dark">{{ product.total_price }} ₺</td>
+            <td>
+              <a href="{% url 'remove_from_cart' product.id %}" class="btn btn-sm" style="background-color: #17a2b8; color: white;">Kaldır</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-end mt-4">
+      <h4 class="fw-bold text-dark">Genel Toplam: <span>{{ total }} ₺</span></h4>
+      <a href="{% url 'checkout' %}" class="btn btn-lg" style="background-color: #17a2b8; color: white;">Sepeti Onayla</a>
+    </div>
+
+  {% else %}
+    <div class="alert text-center" style="background-color: #e0f7fa; color: #17a2b8;">
+      <p class="mb-3">Sepetiniz şu an boş </p>
+      <a href="{% url 'product_list' %}" class="btn btn-sm"
+   style="background-color: #17a2b8;
+    padding: 12px 28px;
+    border-radius: 6px;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;">
+   Alışverişe Devam Et
+</a>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

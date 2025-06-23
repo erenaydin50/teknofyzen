@@ -1,0 +1,178 @@
+:root {
+    --main-color: #343a40;
+    --main-color-hover: #23272b;
+    --accent-color: #17a2b8;
+    --accent-color-hover: #138496;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa; /* Açık gri arka plan */
+}
+
+h2 {
+    color: var(--main-color) !important;
+}
+
+h5.card-title {
+    color: var(--main-color);
+}
+
+p.card-text {
+    color: #444;
+}
+
+img.card-img-top {
+    width: 100%;
+}
+
+.card-img-top {
+    height: 400px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 450px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+}
+
+.card img {
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-body h5 {
+    margin: 10px 0;
+}
+
+.card-body p {
+    flex-grow: 1;
+}
+
+.card-body a {
+    margin-top: auto;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.card-body a:hover {
+    background-color: var(--accent-color-hover);
+    border-color: var(--accent-color-hover);
+    color: white;
+}
+
+/* HERO BANNER DÜZGÜN HALİ */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Dilersen 550px veya 600px yapabilirsin */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #17a2b8; /* Senin site rengi → kenarlarda boşluk olursa bu doldurur */
+}
+
+.hero-img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* geniş görüntüyü banner gibi yayar */
+    object-position: 45% 50.4%;
+    z-index: 1;
+	
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+}
+
+.btn-theme {
+    background-color: #17a2b8;
+    padding: 12px 28px;
+    border-radius: 6px;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-theme:hover {
+    background-color: #138496;
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 350px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-banner {
+        height: 350px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+}
+.navbar-logo {
+  background: transparent !important;
+  border: none !important;
+}
+
+

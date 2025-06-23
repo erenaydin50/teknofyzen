@@ -1,0 +1,124 @@
+{% load static %}
+
+<style>
+
+:root {
+    --main-color: #343a40;
+    --main-color-hover: #23272b;
+    --accent-color: #17a2b8;
+    --accent-color-hover: #138496;
+}
+
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.product-detail-wrapper {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.product-image {
+    flex: 0 0 400px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image img {
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+.product-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.product-info h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--main-color);
+    margin-bottom: 16px;
+}
+
+.product-info .price {
+    font-size: 1.8rem;
+    color: #000; /* Siyah renk */
+    margin-bottom: 20px;
+}
+
+.product-info p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.btn-theme {
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-theme:hover {
+    background-color: var(--accent-color-hover);
+}
+
+@media (max-width: 768px) {
+    .product-detail-wrapper {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .product-image {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .product-info h1 {
+        font-size: 1.6rem;
+    }
+
+    .product-info .price {
+        font-size: 1.4rem;
+    }
+}
+
+</style>
+
+<div class="product-detail-wrapper">
+    <div class="product-image">
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    </div>
+    <div class="product-info">
+        <h1>{{ product.name }}</h1>
+        <div class="price">{{ product.price }} TL</div>
+        <p>{{ product.description }}</p>
+        <a href="{% url 'odeme' product.pk %}" class="btn-theme">Ödeme Yap</a>
+    </div>
+</div>
